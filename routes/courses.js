@@ -26,8 +26,15 @@ router.get(['/', '/:id'], asyncHandler(async (req, res) => {
             },
         }],
     });
-    // respond with 200 status and send course data via JSON resonse to client
-    res.status(200).json({ courses });
+    // if courses
+    if (courses) {
+        // respond with 200 status and send course data via JSON resonse to client
+        res.status(200).json({ courses });
+    } else {
+        // if no courses, send 404 status
+        res.status(404).end();
+    }
+
 }));
 
 // POST request for /api/courses
